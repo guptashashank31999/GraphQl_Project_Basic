@@ -1,0 +1,91 @@
+-------First Query--------
+{
+  allUsers{
+    firstName
+   _id
+  }
+  
+}
+
+----------Second Query With params--------
+{
+  oneUser(_id:"1234"){
+    firstName
+  }
+}
+
+------THird Query WIth params------
+query getUserById($userID: String!) {
+  userBasedQuotes(id: $userID) {
+    name
+  }
+}
+
+
+----------Mutation Creating new User-------
+mutation {
+  signupUserDummy(firstName:"F-Test-10" , lastName:"L-Test-10" , email:"test-10@test10.com" , password:"9999"){
+    _id
+    firstName
+    lastName
+    email
+  }
+}
+
+
+---------Mutation with Query Variable---------
+mutation createUser($userNew:UserInput!){
+  signupUserDummy(userNew:$userNew){
+    _id
+    firstName
+    lastName
+    email
+  }
+}
+Query Variable
+{
+  "userNew": {
+    "firstName":"F-Test-12" , 
+    "lastName":"L-Test-12",
+    "email":"test12@test12.com",
+    "password":"12345"
+  }
+}
+
+
+------------SignUp USer--------
+mutation createUser($userNew:UserInput!){
+  signupUser(userNew:$userNew){
+    _id
+    firstName
+    lastName
+    email
+  }
+}
+
+{
+  "userNew": {
+    "firstName":"F-Test-4" , 
+    "lastName":"L-Test-4",
+    "email":"test12@test4.com",
+    "password":"12345"
+  }
+}
+
+-------------SignIN user-------
+mutation userSignin($userSignin:UserSigninInput!){
+  signinUser(userSignin:$userSignin){
+    token
+  }
+  
+}
+{
+  "userSignin": {
+    "email" : "test12@test4.com",
+    "password" : "12345"
+}
+  
+-----------------------  
+
+
+
